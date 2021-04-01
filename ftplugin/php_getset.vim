@@ -357,7 +357,7 @@ let s:lastline  = 0
 let s:phpname = '[a-zA-Z_$][a-zA-Z0-9_$]*'
 let s:brackets = '\(\s*\(\[\s*\]\)\)\='
 "let s:variable = '\(\s*\)\(\([private,protected,public]\s\+\)*\)\$\(' . s:phpname . '\)\s*\(;\|=[^;]\+;\)'
-let s:variable = '@var\s\+\([a-zA-Z]*\)\s*\*\/\(\s*\)\(private\|public\|protected\)\s\+$\([a-zA-Z_$][a-zA-Z0-9_$]*\)'
+let s:variable = '@var\s\+\([a-zA-Z]*\).*\*\/\(\s*\)\(private\|public\|protected\)\s\+$\([a-zA-Z_$][a-zA-Z0-9_$]*\)'
 
 " The main entry point. This function saves the current position of the
 " cursor without the use of a mark (see note below)  Then the selected
@@ -471,7 +471,7 @@ endif
 if !exists("*s:GetRangeAsString")
   function s:GetRangeAsString(first, last)
     " force the firs line to be the 2nd line ABOVE the selection
-    let line = a:first - 2
+    let line = a:first - 4
     let string = s:TrimRight(getline(line))
 
     while line < a:last
